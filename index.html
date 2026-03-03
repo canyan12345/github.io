@@ -1,0 +1,103 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用下载</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FFC107',
+                        secondary: '#FFD54F',
+                        dark: '#FFA000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-all-300 {
+                transition: all 0.3s ease;
+            }
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 640px) {
+            .download-section {
+                padding: 1rem;
+            }
+            .download-btn {
+                padding: 0.75rem 1rem;
+                font-size: 1.1rem;
+            }
+            .download-notification {
+                bottom: 18%;
+                left: 1rem;
+                right: 1rem;
+                transform: none;
+                margin: 0 auto;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- 主图片区域 -->
+    <section class="relative w-full h-screen">
+        <div class="w-full h-full">
+            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/079a204b59764f3381a0af1fe01bb246~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=2026030400022882572F92D75718AF07FE&amp;rrcfp=e75484ac&amp;x-expires=1773158548&amp;x-signature=CSATowDGK4rz2qLzzs8vA4aknPY%3D" alt="应用截图" class="w-full h-full object-cover">
+        </div>
+    </section>
+
+    <!-- 下载按钮区域 -->
+    <section class="download-section fixed bottom-0 left-0 right-0 p-6 bg-white bg-opacity-90 backdrop-blur-sm">
+        <div class="container mx-auto">
+            <!-- 下载按钮 - 请将下面的 href 属性值替换为您的实际下载链接 -->
+            <a href="https://www.baidu.com" id="download-btn" class="download-btn w-full bg-primary hover:bg-secondary text-white py-5 px-8 rounded-full text-xl font-bold shadow-lg transition-all-300 flex items-center justify-center text-center">
+                立即下载
+            </a>
+        </div>
+    </section>
+
+    <!-- 下载成功提示 -->
+    <div id="download-notification" class="download-notification fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-4 opacity-0 transition-all duration-300 z-50 flex items-center">
+        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+        <div>
+            <h4 class="font-bold text-gray-800">正在下载</h4>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化下载按钮
+            initDownloadButton();
+        });
+        
+        // 下载按钮功能
+        function initDownloadButton() {
+            const downloadBtn = document.getElementById('download-btn');
+            const notification = document.getElementById('download-notification');
+            
+            downloadBtn.addEventListener('click', () => {
+                // 显示下载通知
+                notification.classList.remove('opacity-0');
+                notification.classList.add('opacity-100');
+                
+                // 3秒后隐藏通知
+                setTimeout(() => {
+                    notification.classList.remove('opacity-100');
+                    notification.classList.add('opacity-0');
+                }, 3000);
+            });
+        }
+    </script>
+
+</body></html>
